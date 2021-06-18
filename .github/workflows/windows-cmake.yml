@@ -1,0 +1,10 @@
+name: Windows CMake
+
+on: [pull_request]
+
+jobs:
+  windows-cmake:
+    runs-on: windows-latest
+    steps:
+      - name: CMake version
+        run: cmake --version
