@@ -1,0 +1,20 @@
+name: Test Tar Windows
+
+on: [pull_request]
+
+jobs:
+  windows-cmake:
+    runs-on: windows-latest
+    steps:
+      - name: Create sample artifact
+        run: |
+          echo "hello from ${{ github.sha }}" >> ${{ github.workspace }}/artifact.txt
+      - name: Tar version
+        run: tar --version
+      - name: Tar file
+        run: tar -zcvf ${{ github.workspace }}/artifact.tar.gz ${{ github.workspace }}/artifact.txt
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: artifact-${{ github.sha }}
+          path: ${{ github.workspace }}/artifact.tar.gz
