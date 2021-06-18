@@ -1,0 +1,19 @@
+name: Build Artifacts
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create sample artifact
+        run: |
+          echo "hello from ${{ github.sha }}" >> artifact.txt
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: build-${{ github.sha }}
+          path: artifact.txt
+  
