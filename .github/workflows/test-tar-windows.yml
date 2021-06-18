@@ -12,7 +12,7 @@ jobs:
       - name: Tar version
         run: tar --version
       - name: Tar file
-        run: tar -zcvf ${{ github.workspace }}/artifact.tar.gz ${{ github.workspace }}/artifact.txt
+        run: tar -zcvf ${{ github.workspace }}/artifact.tar.gz -C ${{ github.workspace }} artifact.txt
       - name: Upload artifact
         uses: actions/upload-artifact@v2
         with:
